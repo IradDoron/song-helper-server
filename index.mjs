@@ -4,6 +4,7 @@ import cors from 'cors';
 
 // import data
 import literarySourses from './db-mock/literarySourses.mjs';
+import weddingSongs from './db-mock/weddingSongs.mjs';
 
 const { PORT, HOST } = process.env;
 
@@ -11,8 +12,14 @@ const app = express();
 
 app.use(cors());
 
-app.get('/api', (req, res) => {
+app.get('/literary', (req, res) => {
 	const json = JSON.stringify(literarySourses);
+	res.setHeader('Content-Type', 'application/json');
+	res.end(json);
+});
+
+app.get('/wedding-songs', (req, res) => {
+	const json = JSON.stringify(weddingSongs);
 	res.setHeader('Content-Type', 'application/json');
 	res.end(json);
 });
